@@ -1,9 +1,10 @@
+"use strict";
 // Primeira atividade do curso:
 // Criar uma funcao que mostra a soma entre dois numeros
-var numberOne = 1;
-var numberTwo = 3;
+const numberOne = 1;
+const numberTwo = 3;
 function sum(firstNumber, secondNumber) {
     return firstNumber + secondNumber;
 }
-var test = sum(numberOne, numberTwo);
+const test = sum(numberOne, numberTwo);
 console.log(test);
