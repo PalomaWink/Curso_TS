@@ -72,3 +72,66 @@ function mergeArrays<T>(arr1: T[], arr2: T[]){
 // Fazendo isso, conseguimos determinar o tipo que esse retorno vai ter, diretamente no retorno
 console.log(mergeArrays<number | string>([1,2,3], ['Testando', 'Teste']));
 
+// 6 - Parametros opcionais
+function modernGreeting(name: string, greet?: string) {
+  // Narrowing são as validações condicionais
+  if(greet) {
+    return `Olá ${greet} ${name}, tudo bem?`
+  }
+  return `Olá ${name}, tudo bem?`
+}
+console.log(modernGreeting('Matheus'));
+
+// 7 - Parametros default 
+
+function somaDefault(n: number, m = 10): number {
+  return n + m;
+}
+
+console.log(somaDefault(10));
+console.log(somaDefault(15, 12));
+
+
+// 8 - Tipo unknown
+// é utilizado de forma semelhante ao any, aceitando qualquer tipo de dado;
+// ele não deixa ser executado se não houver validação de tipo; 
+
+function doSomething(x: unknown) {
+  if(Array.isArray(x)) {
+    console.log(x[0]);
+    // sempre precisamos estar testando o tipo para que ele funcione
+  } else if(typeof x === 'number') {
+    console.log('x é um número');
+  }
+}
+
+doSomething([1, 2, 3]);
+doSomething(5)
+
+// 9 - Tipo never
+// é parecido com o void, porém é utilizando quando a função não retorna nada
+// precisamos utilizar o throw new Error
+
+function showErrorMessage(msg: string): never {
+  throw new Error(msg)
+}
+
+// 10 - rest operator
+function sumAll(...n: number[]) {
+  return n.reduce((number, sum) => sum + number)
+}
+
+console.log(sumAll(1, 8, 5, 6, 10));
+console.log(sumAll(10));
+
+// 11 - Destructuring em parâmetros
+// desestruturar o que vem de uma função, ou de alguma chamada
+function showProductDetails({name, price}: {name: string, price: number}): string {
+  return `O nome do produto é ${name} e ele custa R$${price}`
+}
+
+const shirt = {name: 'Camisa', price: 49.99};
+console.log(showProductDetails(shirt));
+
+
+
