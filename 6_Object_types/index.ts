@@ -75,3 +75,81 @@ let coords: CoordObject = {
 }
 
 coords.y = 15
+
+//5 - Extending types -> Quando queremos extender uma interface, podemos usar a palavra extends (como uma heranca)
+
+interface Human {
+  name: string,
+  age: number,
+}
+
+interface SuperHuman extends Human {
+  powers: string[]
+}
+
+const paloma: Human = {
+  name: 'Paloma',
+  age: 28
+}
+
+const superman: SuperHuman = {
+  name: 'Superman',
+  age: 100,
+  powers: ['Super forca', 'Visao de calor']
+}
+
+//6 - Intersection types -> Quando queremos juntar 2 ou mais interfaces, podemos usar a palavra &
+
+interface Character {
+  name: string,
+}
+
+interface Gun {
+  type: string,
+  caliber: number
+}
+
+type Soldier = Character & Gun
+
+const arnold: Soldier = {
+  name: 'Arnold',
+  type: 'AK-47',
+  caliber: 7.62
+}
+
+//7 - ReadonlyArray -> Quando queremos que um array seja somente leitura, podemos usar a palavra readonly
+let myArray: ReadonlyArray<string> = ['mamao', 'banana', 'maca']
+
+// myArray[0] = 10 -> nao permite alterar o valor do array
+
+myArray.forEach((item) => {
+  console.log(item)
+})
+
+myArray = myArray.map((item) => {
+  return `Fruta: ${item}`
+})
+
+// so e possivel alterar utilizando metodos (HOFS)
+
+//8 - Tuplas -> Quando queremos definir um array com tipos diferentes, basicamente criamos um novo type, e nele
+// inserimos um array com os tipos necessarios
+
+type fiveNumber = [number, number, number, number, number];
+
+const myNumberArray: fiveNumber = [1, 2, 3, 4, 5]
+
+// da pra colocar uma string no meio
+
+type fiveNumberString = [number, string, number, number, number];
+const myNumberArrayString: fiveNumberString = [1, 'dois', 3, 4, 5];
+
+// Nao da pra aumentar, nem diminuir o tamanho do array, e nem alterar os tipos
+
+//9 - Tuplas com readonly -> Quando queremos que um array seja somente leitura, podemos usar a palavra readonly
+
+function showNumbers(numbers: readonly [number, number, number]) {
+  console.log(numbers)
+}
+
+showNumbers([1, 2, 3])

@@ -38,3 +38,34 @@ let coords = {
     x: 10
 };
 coords.y = 15;
+const paloma = {
+    name: 'Paloma',
+    age: 28
+};
+const superman = {
+    name: 'Superman',
+    age: 100,
+    powers: ['Super forca', 'Visao de calor']
+};
+const arnold = {
+    name: 'Arnold',
+    type: 'AK-47',
+    caliber: 7.62
+};
+//7 - ReadonlyArray -> Quando queremos que um array seja somente leitura, podemos usar a palavra readonly
+let myArray = ['mamao', 'banana', 'maca'];
+// myArray[0] = 10 -> nao permite alterar o valor do array
+myArray.forEach((item) => {
+    console.log(item);
+});
+myArray = myArray.map((item) => {
+    return `Fruta: ${item}`;
+});
+const myNumberArray = [1, 2, 3, 4, 5];
+const myNumberArrayString = [1, 'dois', 3, 4, 5];
+// Nao da pra aumentar, nem diminuir o tamanho do array, e nem alterar os tipos
+//9 - Tuplas com readonly -> Quando queremos que um array seja somente leitura, podemos usar a palavra readonly
+function showNumbers(numbers) {
+    console.log(numbers);
+}
+showNumbers([1, 2, 3]);
