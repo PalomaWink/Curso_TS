@@ -10,6 +10,14 @@ const app = express();
 // 3 - Rotas com Postaman
 app.use(express.json());
 
+//11 - Middleware para todas as rotas
+function showPath(req: Request, res: Response, next: NextFunction) {
+  console.log(req.path);
+  next();
+}
+
+app.use(showPath)
+
 app.get("/", (request, response) => {
   return response.send("Hello World");
 })
@@ -91,6 +99,14 @@ function checkUser(req: Request, res: Response, next: NextFunction) {
 
 app.get("/api/user/:id/access", checkUser, (req: Request, res: Response) => {
   return res.json({message: "Bem vindo a area administrativa!"})
+})
+
+// 12 - req e res com generics
+app.get("/api/user/:id/details/:name", (req: Request<{id: string, name: string}>, res: Response<{status: boolean}>) => {
+  console.log(`ID: ${req.params.id}`);
+  console.log(`Name: R${req.params.name}`);
+  
+  return res.json({status: true})
 })
 
 app.listen(3000, () => console.log('Server is running'));
